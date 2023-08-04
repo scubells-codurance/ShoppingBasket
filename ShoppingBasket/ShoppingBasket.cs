@@ -38,7 +38,7 @@ public class ShoppingBasket : IShoppingBasket
 
     public void PrintShoppingCart()
     {
-        throw new NotImplementedException();
+        printer.Print(cart.getFormattedProducts());
     }
 }
 
