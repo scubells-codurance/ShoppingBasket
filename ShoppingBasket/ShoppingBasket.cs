@@ -80,16 +80,3 @@ public class Printer : IPrinter
         throw new NotImplementedException();
     }
 }
-
-public interface ICart
-{
-    public void AddProduct(Product product);
-}
-
-public class Cart : ICart
-{
-    public void AddProduct(Product product)
-    {
-        throw new NotImplementedException();
-    }
-}
