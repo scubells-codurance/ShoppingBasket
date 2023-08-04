@@ -1,7 +1,7 @@
 ﻿namespace ShoppingBasket;
 
 public interface IShoppingBasket {
-    public void AddItem(Product product);
+    public void AddItem(string product);
     public void DeletItem(Product product);
     public void ApplyDiscount(Discount discount);
     public void PrintShoppingCart();
@@ -9,14 +9,21 @@ public interface IShoppingBasket {
 
 public class ShoppingBasket : IShoppingBasket
 {
-    public ShoppingBasket(IPrinter printer)
+    private IPrinter printer;
+    private IProductRepository productRepository;
+    private ICart cart;
+
+    public ShoppingBasket(IPrinter printer, IProductRepository productRepository, ICart cart)
     {
-        throw new NotImplementedException();
+        this.cart = cart;
+        this.productRepository = productRepository;
+        this.printer = printer;
     }
 
-    public void AddItem(Product product)
+    public void AddItem(string productName)
     {
-        throw new NotImplementedException();
+        var product = productRepository.GetProductBy(productName);
+        cart.AddProduct(product);
     }
 
     public void DeletItem(Product product)
@@ -35,12 +42,21 @@ public class ShoppingBasket : IShoppingBasket
     }
 }
 
+public record Tax(string name, int value);
 
 public class Product
 {
-    public Product(string name)
+    private string name;
+    private float cost;
+    private float revenue;
+    private Tax tax;
+
+    public Product(string name, float cost, float revenue, Tax tax)
     {
-        throw new NotImplementedException();
+        this.tax = tax;
+        this.revenue = revenue;
+        this.cost = cost;
+        this.name = name;
     }
 }
 
@@ -59,6 +75,32 @@ public interface IPrinter
 public class Printer : IPrinter
 {
     public void Print(string message)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public interface IProductRepository
+{
+    public Product GetProductBy(String name);
+}
+
+public class ProductRepository : IProductRepository
+{
+    public Product GetProductBy(string name)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public interface ICart
+{
+    public void AddProduct(Product product);
+}
+
+public class Cart : ICart
+{
+    public void AddProduct(Product product)
     {
         throw new NotImplementedException();
     }
