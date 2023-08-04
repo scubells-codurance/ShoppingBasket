@@ -46,7 +46,7 @@ public record Tax(string name, int value);
 
 public class Product
 {
-    private string name;
+    public string name { get;}
     private float cost;
     private float revenue;
     private Tax tax;
@@ -74,20 +74,8 @@ public interface IPrinter
 
 public class Printer : IPrinter
 {
+    public int lol = 2;
     public void Print(string message)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-public interface IProductRepository
-{
-    public Product GetProductBy(String name);
-}
-
-public class ProductRepository : IProductRepository
-{
-    public Product GetProductBy(string name)
     {
         throw new NotImplementedException();
     }
