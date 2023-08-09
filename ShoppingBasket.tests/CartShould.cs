@@ -16,19 +16,6 @@ public class CartShould
         products.Should().BeEquivalentTo(new List<Product>() { product });
     }
 
-    /*"""
- --------------------------------------------
- | Product name | Price with VAT | Quantity |
- | -----------  | -------------- | -------- |
- | Chicken 🍗   | 1.83 €         | 1        |
- |------------------------------------------|
- | Promotion:                               |
- --------------------------------------------
- | Total products: 1                        |
- | Total price: 1.83 €                      |
- --------------------------------------------
- """*/
- 
     [Fact]
     public void getFormattedProductsWithEmptyProductList()
     {
@@ -44,6 +31,30 @@ public class CartShould
 --------------------------------------------
 """;
         var cart = new Cart();
+
+        var result = cart.getFormattedProducts();
+        
+        result.Should().Be(expectedResult);
+    }
+    
+    [Fact]
+    public void getFormattedProductsWithOneChicken()
+    {
+        var expectedResult =     """
+ --------------------------------------------
+ | Product name | Price with VAT | Quantity |
+ | -----------  | -------------- | -------- |
+ | Chicken 🍗   | 1.83 €         | 1        |
+ |------------------------------------------|
+ | Promotion:                               |
+ --------------------------------------------
+ | Total products: 1                        |
+ | Total price: 1.83 €                      |
+ --------------------------------------------
+ """;
+        var cart = new Cart();
+        var chicken = new Product("Chicken 🍗", 1.34f, 12, new Tax("normal", 21));
+        cart.AddProduct(chicken);
 
         var result = cart.getFormattedProducts();
         
