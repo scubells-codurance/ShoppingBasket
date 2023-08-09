@@ -23,7 +23,17 @@ public class Cart : ICart
 
     public string getFormattedProducts()
     {
-        throw new NotImplementedException();
+        return """
+--------------------------------------------
+| Product name | Price with VAT | Quantity |
+| -----------  | -------------- | -------- |
+|------------------------------------------|
+| Promotion:                               |
+--------------------------------------------
+| Total products: 0                        |
+| Total price: 0.00 €                      |
+--------------------------------------------
+""";
     }
 
 }
