@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using ShoppingBasket.tests.utils;
 
 namespace ShoppingBasket.tests;
 
@@ -12,7 +13,7 @@ public class ProductRepositoryShould
 
         var product = productRepository.GetProductBy(productName);
 
-        var something = new Product(productName, 1.34f, 12, new Tax("normal", 21));
+        var something = MockProduct.GetSomeProductWith(productName);
         product.Should().BeEquivalentTo(something);
     }
 }

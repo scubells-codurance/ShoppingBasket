@@ -1,4 +1,5 @@
 using FluentAssertions;
+using ShoppingBasket.tests.utils;
 
 namespace ShoppingBasket.tests;
 
@@ -8,7 +9,7 @@ public class CartShould
     public void AddOneProduct()
     {
         var cart = new Cart();
-        var product = new Product("productName 📖", 1.55f, 15, new Tax("normal", 21));
+        var product = MockProduct.GetSomeProductWith("productName 📖");
 
         cart.AddProduct(product);
         var products = cart.Products;
@@ -53,7 +54,7 @@ public class CartShould
  --------------------------------------------
  """;
         var cart = new Cart();
-        var chicken = new Product("Chicken 🍗", 1.34f, 12, new Tax("normal", 21));
+        var chicken = MockProduct.GetSomeProductWith("Chicken 🍗");
         cart.AddProduct(chicken);
 
         var result = cart.getFormattedProducts();
